@@ -1,0 +1,23 @@
+# [Library], [Temp], [Obj], [Builds], [Logs], [UserSettings]
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Visual Studio / Rider / Consulo / Gradle
+.vs/
+.gradle/
+*.csproj
+*.sln
+*.user
+*.suo
+
+# Crash Reports and Memory
+sysinfo.txt
+[Mm]emoryCaptures/
+
+# Asset Store Tools
+# /[Aa]ssets/AssetStoreTools*
