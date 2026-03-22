@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // ← Agregar este using arriba
+using UnityEngine.InputSystem;
 public class MarioMovement : MonoBehaviour
 {
     [Header("Ajustes de Movimiento")]
@@ -12,18 +12,17 @@ public class MarioMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
-    private float moveInput;
-    private bool isGrounded;
+    public float moveInput;
+    public bool isGrounded;
 
     void Start()
     {
-        // Obtenemos el componente físico al iniciar
         rb = GetComponent<Rigidbody2D>();
     }
 
 void Update()
 {
-    // 1. Detectamos el suelo (la parte que ya pusiste)
+    //Deteccion de suelo con el nombre de el escenario
     Collider2D hit = Physics2D.OverlapCircle(groundCheck.position, checkRadius);
 
     if (hit != null && hit.gameObject.name == "mapaProps")
@@ -35,14 +34,12 @@ void Update()
         isGrounded = false;
     }
 
-    // 2. Leer el input horizontal (¡Lo que faltaba para moverse!)
-    // ✅ Con LayerMask para solo detectar el suelo real
+    //Leer el input horizontal
     isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
 
     moveInput = Keyboard.current != null ?
     (Keyboard.current.dKey.isPressed ? 1f :
      Keyboard.current.aKey.isPressed ? -1f : 0f) : 0f;
-    Debug.Log($"isGrounded: {isGrounded} | Space: {Keyboard.current.spaceKey.wasPressedThisFrame}");
     
     if ((Keyboard.current.spaceKey.wasPressedThisFrame) && isGrounded)
     {
@@ -52,7 +49,7 @@ void Update()
 
     void FixedUpdate()
     {
-        // 4. Aplicar el movimiento en el FixedUpdate (mejor para físicas)
+        //Aplicar el movimiento en el FixedUpdate
         rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
         
     }
