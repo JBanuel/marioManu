@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/mainMenuStyles.uss?fileID=7433441132597879392&amp;guid=c9b2814c83d564bc8b7230e92ec0166e&amp;type=3#mainMenuStyles"/>
+    <ui:VisualElement name="container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Images/FondoAzul.png?fileID=-6042966415524552809&amp;guid=06c51d2e5ab3e484ba97169c8b94ee95&amp;type=3#FondoAzul_0&quot;);">
+        <ui:Label text="Menu principal" name="title" class="header" style="margin-top: 74px; margin-bottom: 177px; font-size: 60px;"/>
+        <ui:Button text="Jugar" name="JugarButton" class="button" style="color: rgb(0, 0, 0);"/>
+        <ui:Button text="Ayuda" name="AyudaButton" class="button"/>
+        <ui:Button text="Creditos" name="CreditosButton" class="button"/>
+    </ui:VisualElement>
+</ui:UXML>

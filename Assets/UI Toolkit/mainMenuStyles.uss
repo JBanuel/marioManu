@@ -1,0 +1,25 @@
+:root {
+}
+
+.header {
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    align-self: center;
+}
+
+.button {
+    font-size: 40px;
+    width: 400px;
+    height: 100px;
+    align-items: auto;
+    align-self: center;
+    background-image: url("project://database/Assets/Images/SMB%20Recorte1.png?fileID=-48867731&guid=fc4a27df3eec246a9992c60f873bf2bc&type=3#SMB Recorte1_48");
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    margin-left: 40px;
+}
