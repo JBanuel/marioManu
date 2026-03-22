@@ -2,11 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class MarioMovement : MonoBehaviour
 {
-    [Header("Ajustes de Movimiento")]
     public float speed = 8f;
     public float jumpForce = 12f;
 
-    [Header("Detección de Suelo")]
     public Transform groundCheck;
     public float checkRadius = 0.2f;
     public LayerMask groundLayer;

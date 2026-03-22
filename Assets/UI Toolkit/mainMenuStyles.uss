@@ -30,3 +30,46 @@
     scale: 1.1 1.1;
     transition-duration: 0.35s;
 }
+
+.screen-container {
+    flex-grow: 1;
+    align-items: center;
+}
+
+.hidden-screen {
+    display: none;
+}
+
+.title-margin {
+    margin-top: 74px;
+    margin-bottom: 60px;
+    color: white;
+}
+
+.help-text {
+    color: white;
+    font-size: 24px;
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+
+.credits-mask {
+    flex-grow: 1;
+    width: 100%;
+    overflow: hidden;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.credits-text {
+    color: white;
+    font-size: 40px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.bottom-margin {
+    margin-bottom: 40px;
+}

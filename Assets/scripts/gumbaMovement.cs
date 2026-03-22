@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class WalkLeftAndFlip : MonoBehaviour
 {
-    [Header("Ajustes de Movimiento")]
-    public float speed = 3f; // Velocidad hacia la izquierda
+    public float speed = 3f; 
 
-    [Header("Ajustes de Animación (Voltear Sprite)")]
     public float intervaloFlipping = 0.3f;
 
     private Rigidbody2D rb;

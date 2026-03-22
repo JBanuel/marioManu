@@ -16,14 +16,14 @@ public class animatorJeje : MonoBehaviour
     void Update()
     {
         //Animación de Correr
-        // Si moveInput es -1 (izquierda) o 1 (derecha), Speed siempre recibirá 1.
+        //Si moveInput es -1 (izquierda) o 1 (derecha), Speed siempre recibirá 1.
         anim.SetFloat("Speed", Mathf.Abs(marioMove.moveInput));
 
-        // 2. Animación de Salto
-        // Si isGrounded es falso entonces IsJumping es verdadero
+        //Animación de Salto
+        //Si isGrounded es falso entonces IsJumping es verdadero
         anim.SetBool("IsJumping", !marioMove.isGrounded);
 
-        // 3. Voltear el Sprite visualmente
+        //Voltear el Sprite visualmente
         if (marioMove.moveInput > 0)
         {
             spriteR.flipX = false; //derecha

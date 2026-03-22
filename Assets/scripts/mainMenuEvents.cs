@@ -1,55 +1,120 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; 
 
-public class mainMenuEvents : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
     private UIDocument _document;
     
-    // Declarar variables para cada botón
+    // Contenedores
+    private VisualElement _menuContainer;
+    private VisualElement _helpContainer;
+    private VisualElement _creditosContainer;
+    private VisualElement _creditsMask;
+    
+    // Elemento a animar
+    private Label _creditsText;
+    
+    // Botones
     private Button _jugarButton;
     private Button _ayudaButton;
     private Button _creditosButton;
+    private Button _volverAyudaButton;
+    private Button _volverCreditosButton;
+
+    public float scrollSpeed = 150f;
+    private float _creditsYOffset;
+    private bool _isShowingCredits = false;
 
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
+    }
 
-        // Asignar cada botón a su variable correspondiente usando su nombre en el UI Builder
-        _jugarButton = _document.rootVisualElement.Q<Button>("JugarButton");
-        _ayudaButton = _document.rootVisualElement.Q<Button>("AyudaButton");
-        _creditosButton = _document.rootVisualElement.Q<Button>("CreditosButton");
+    private void OnEnable()
+    {
+        VisualElement root = _document.rootVisualElement;
 
-        // Registrar los eventos de clic para cada botón
-        _jugarButton.RegisterCallback<ClickEvent>(OnJugarClick);
-        _ayudaButton.RegisterCallback<ClickEvent>(OnAyudaClick);
-        _creditosButton.RegisterCallback<ClickEvent>(OnCreditosClick);
+        //Encontrar contenedores y elementos de créditos
+        _menuContainer = root.Q<VisualElement>("MenuContainer");
+        _helpContainer = root.Q<VisualElement>("HelpContainer");
+        _creditosContainer = root.Q<VisualElement>("CreditosContainer");
+        _creditsMask = root.Q<VisualElement>("CreditsMask");
+        _creditsText = root.Q<Label>("CreditsText");
+
+        //Encontrar botones
+        _jugarButton = root.Q<Button>("JugarButton"); 
+        _ayudaButton = root.Q<Button>("AyudaButton");
+        _creditosButton = root.Q<Button>("CreditosButton");
+        _volverAyudaButton = root.Q<Button>("VolverAyudaButton");
+        _volverCreditosButton = root.Q<Button>("VolverCreditosButton");
+
+        //Suscribir eventos
+        if (_jugarButton != null) _jugarButton.clicked += CargarJuego; 
+        if (_ayudaButton != null) _ayudaButton.clicked += MostrarAyuda;
+        if (_creditosButton != null) _creditosButton.clicked += MostrarCreditos;
+        if (_volverAyudaButton != null) _volverAyudaButton.clicked += MostrarMenu;
+        if (_volverCreditosButton != null) _volverCreditosButton.clicked += MostrarMenu;
     }
 
     private void OnDisable()
     {
-        // Desregistrar los eventos es una buena práctica para evitar errores de memoria
-        _jugarButton.UnregisterCallback<ClickEvent>(OnJugarClick);
-        _ayudaButton.UnregisterCallback<ClickEvent>(OnAyudaClick);
-        _creditosButton.UnregisterCallback<ClickEvent>(OnCreditosClick);
+        if (_jugarButton != null) _jugarButton.clicked -= CargarJuego; 
+        if (_ayudaButton != null) _ayudaButton.clicked -= MostrarAyuda;
+        if (_creditosButton != null) _creditosButton.clicked -= MostrarCreditos;
+        if (_volverAyudaButton != null) _volverAyudaButton.clicked -= MostrarMenu;
+        if (_volverCreditosButton != null) _volverCreditosButton.clicked -= MostrarMenu;
     }
 
-    // Métodos que se ejecutan al hacer clic
-    private void OnJugarClick(ClickEvent evt)
+    private void Update()
     {
-        Debug.Log("Presionaste el botón Jugar");
+        if (_isShowingCredits && _creditsText != null && _creditsMask != null)
+        {
+            _creditsYOffset -= scrollSpeed * Time.deltaTime;
+
+            if (_creditsYOffset < -_creditsText.layout.height)
+            {
+                _creditsYOffset = _creditsMask.layout.height;
+            }
+
+            _creditsText.transform.position = new Vector3(0, _creditsYOffset, 0);
+        }
+    }
+
+
+    private void CargarJuego()
+    {
         SceneManager.LoadScene("SampleScene");
     }
 
-    private void OnAyudaClick(ClickEvent evt)
+    private void MostrarAyuda()
     {
-        Debug.Log("Presionaste el botón Ayuda");
-        // Aquí irá la lógica para mostrar el menú de ayuda
+        _menuContainer.style.display = DisplayStyle.None;
+        _helpContainer.style.display = DisplayStyle.Flex;
     }
 
-    private void OnCreditosClick(ClickEvent evt)
+    private void MostrarCreditos()
     {
-        Debug.Log("Presionaste el botón Créditos");
-        // Aquí irá la lógica para mostrar los créditos
+        _menuContainer.style.display = DisplayStyle.None;
+        _creditosContainer.style.display = DisplayStyle.Flex;
+        
+        _isShowingCredits = true;
+        _creditsText.RegisterCallback<GeometryChangedEvent>(InitCreditsPosition);
+    }
+
+    private void InitCreditsPosition(GeometryChangedEvent evt)
+    {
+        _creditsText.UnregisterCallback<GeometryChangedEvent>(InitCreditsPosition);
+        _creditsYOffset = _creditsMask.layout.height;
+        _creditsText.transform.position = new Vector3(0, _creditsYOffset, 0);
+    }
+
+    private void MostrarMenu()
+    {
+        _helpContainer.style.display = DisplayStyle.None;
+        _creditosContainer.style.display = DisplayStyle.None;
+        _menuContainer.style.display = DisplayStyle.Flex;
+        
+        _isShowingCredits = false;
     }
 }

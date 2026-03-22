@@ -6,7 +6,6 @@ public class movimientoCamara : MonoBehaviour
     public float velocidadCamara = 0.025f;  
     public Vector3 desplazamiento;
     
-    [Header("Configuración de Bloqueo")]
     public float alturaFija = 5f; 
 
     private void LateUpdate()

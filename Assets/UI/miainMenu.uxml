@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML ...>
+    <ui:VisualElement name="Root" class="root">
+
+        <ui:VisualElement name="MainContainer" class="main-container">
+            <ui:Label name="TitleLabel" text="Tarea Unity" class="title-label" />
+            
+            <ui:VisualElement name="ButtonContainer" class="button-container">
+                <ui:Button name="PlayButton" text="Jugar" class="orange-button" />
+                <ui:Button name="HelpButton" text="Ayuda" class="orange-button" />
+                <ui:Button name="CreditsButton" text="Créditos" class="orange-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="GhostElement" class="decoration-element ghost-sprite" />
+        <ui:VisualElement name="CloudElement" class="decoration-element cloud-sprite" />
+        <ui:VisualElement name="MiniMarioElement" class="decoration-element mario-sprite" />
+        <ui:VisualElement name="PumpkinElement" class="decoration-element pumpkin-sprite" />
+        
+        <ui:Button name="CloseButton" text="X" class="corner-button exit-button" />
+        <ui:Label name="CreditsLabel" text="Roberto Martínez Román (A01234567)" class="credits-label" />
+
+    </ui:VisualElement>
+</ui:UXML>
