@@ -1,0 +1,13 @@
+:root {
+}
+
+.menuButton {
+    font-size: 50px;
+    background-image: url("project://database/Assets/Images/MarioBloques.png?fileID=-1568850568&guid=0ce6acdb3966f46389b1f839cc5294de&type=3#MarioBloques_67");
+    background-size: 100% 100%;
+    transition-duration: 0.35s;
+}
+
+.menuButton:hover {
+    scale: 1.1 1.1;
+}

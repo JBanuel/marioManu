@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class mainMenuEvents : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class mainMenuEvents : MonoBehaviour
     private void OnJugarClick(ClickEvent evt)
     {
         Debug.Log("Presionaste el botón Jugar");
-        // Aquí irá la lógica para cargar tu escena de juego
+        SceneManager.LoadScene("SampleScene");
     }
 
     private void OnAyudaClick(ClickEvent evt)
